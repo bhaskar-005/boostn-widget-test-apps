@@ -29,7 +29,7 @@ Everything is in this public GitHub repo: [github.com/bhaskar-005/boostn-widget-
 
 **Step 1: get the iOS code (either way works)**
 
-- **Option A, download:** get the ready test app from [the GitHub repo](https://github.com/bhaskar-005/boostn-widget-test-apps) (**Code → Download ZIP**, then use the `ios` folder). Nothing else to change.
+- **Option A, download:** [BoostnTest-iOS-code.zip](https://github.com/bhaskar-005/boostn-widget-test-apps/raw/main/downloads/BoostnTest-iOS-code.zip), or the `ios` folder of [the GitHub repo](https://github.com/bhaskar-005/boostn-widget-test-apps). Nothing else to change.
 - **Option B, from the website:** open the [test event](https://boostn-admin.nmdevai.com/events/fe742f1a-0e12-4da8-a875-41cb43ed5a66) on the Boostn website and copy its iOS widget code. In the test app, paste it into `BoostnTicketsViewController.swift`, replacing the existing code. Keep the `onPurchaseComplete` line so the bottom status line still updates.
 
 **Step 2: install on the iPhone**
@@ -67,8 +67,8 @@ Android testing is done: the test app works fine. Use it to repeat the test or c
 
 **Downloads**
 
-- **APK (ready to install):** [BoostnTest-debug.apk](https://github.com/bhaskar-005/boostn-widget-test-apps/releases/latest/download/BoostnTest-debug.apk)
-- **Android code (zip):** [BoostnTest-Android-code.zip](https://github.com/bhaskar-005/boostn-widget-test-apps/releases/latest/download/BoostnTest-Android-code.zip)
+- **APK (ready to install):** [BoostnTest-debug.apk](https://github.com/bhaskar-005/boostn-widget-test-apps/raw/main/apk/BoostnTest-debug.apk)
+- **Android code (zip):** [BoostnTest-Android-code.zip](https://github.com/bhaskar-005/boostn-widget-test-apps/raw/main/downloads/BoostnTest-Android-code.zip)
 - **GitHub:** [the `android` folder](https://github.com/bhaskar-005/boostn-widget-test-apps/tree/main/android) and [the `apk` folder](https://github.com/bhaskar-005/boostn-widget-test-apps/tree/main/apk) in the repo
 
 * **App:** `BoostnTest-debug.apk` (Android 7.0 and newer). Open it on the phone and allow installs from that app, or run `adb install BoostnTest-debug.apk`. It is signed with a debug key, for testing only.
