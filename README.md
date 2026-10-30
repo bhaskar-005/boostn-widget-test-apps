@@ -1,5 +1,7 @@
 # Boostn Widget Test Apps
 
+**Testing guide and status: [TESTING.md](TESTING.md)**
+
 Two small native apps that show the Boostn ticket widget as one section of a screen: a native header on top, the widget in a WebView in the middle, and a native status line + tabs at the bottom. After a purchase, the bottom line changes to "Purchase complete ✅ order: …".
 
 | Folder | What |
