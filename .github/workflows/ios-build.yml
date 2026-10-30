@@ -1,0 +1,51 @@
+name: iOS build
+
+on:
+  push:
+    paths: ['ios/**', '.github/workflows/ios-build.yml']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      # Simulator build: upload this zip to a cloud simulator such as appetize.io (no signing needed).
+      - name: Build for iOS Simulator
+        run: |
+          xcodebuild -project BoostnTest.xcodeproj -scheme BoostnTest \
+            -configuration Debug -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/sim \
+            CODE_SIGNING_ALLOWED=NO build
+          cd build/sim/Build/Products/Debug-iphonesimulator
+          zip -qry "$GITHUB_WORKSPACE/ios/BoostnTest-simulator.zip" BoostnTest.app
+
+      # Device build: unsigned .ipa, sign + install it with your Apple ID via Sideloadly or AltStore.
+      - name: Build unsigned .ipa for iPhone
+        run: |
+          xcodebuild -project BoostnTest.xcodeproj -scheme BoostnTest \
+            -configuration Release -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/device \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" build
+          mkdir -p Payload
+          cp -R build/device/Build/Products/Release-iphoneos/BoostnTest.app Payload/
+          zip -qry BoostnTest-unsigned.ipa Payload
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BoostnTest-simulator
+          path: ios/BoostnTest-simulator.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BoostnTest-unsigned-ipa
+          path: ios/BoostnTest-unsigned.ipa
